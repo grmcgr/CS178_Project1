@@ -5,10 +5,38 @@
 from flask import Flask
 from flask import render_template
 from flask import Flask, render_template, request, redirect, url_for, flash
+import pymysql
+import cred
+from dbCode import * # import helper functions from dbCode.py
 
 app = Flask(__name__)
+
 app.secret_key = 'your_secret_key' # this is an artifact for using flash displays; 
                                    # it is required, but you can leave this alone
+
+# Route: Home Page #
+@app.route('/')
+def home():
+    # Query the top 10 countries from the MySQL world database
+    topDogs = get_list_of_top_dogs()
+    # Render the index page with the list of countries
+    return render_template("home.html", results=topDogs)
+
+
+
+def get_list_of_top_dogs():
+    """
+    Returns the top 10 countries from the 'country' table, 
+    including name and population. Used on the homepage.
+    """
+    query = "SELECT Name, Population FROM country LIMIT 10;"
+    return execute_query(query)
+
+
+
+
+
+'''
 
 @app.route('/')
 def home():
@@ -57,6 +85,17 @@ def display_users():
     # note that this could have been a result from an SQL query :) 
     users_list = (('John','Doe','Comedy'),('Jane', 'Doe','Drama'))
     return render_template('display_users.html', users = users_list)
+
+
+
+
+
+
+
+
+
+
+'''
 
 
 # these two lines of code should always be the last in the file
