@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Add New User</title>
+    <title>Update User DOB</title>
 </head>
 <body>
-    <h1>Add New User</h1>
-    <form action="{{ url_for('add_user') }}" method="post">
+    <h2>Update User DOB</h2>
+    <form action="{{ url_for('update_user') }}" method="POST">
         <label for="Username">Username:</label><br>
         <input type="text" id="Username" name="Username" required><br>
-        <label for="DOB">Date of Birth (MM/DD):</label><br>
-        <input type="text" id="DOB" name="DOB" required><br>
-        <input type="submit" value="Submit">
+        <label for="DOB">New Date of Birth (MM/DD):</label><br>
+        <input type="text" id="DOB" name="DOB" required><br><br>
+        <button type="submit" value="Submit">Update DOB</button>
     </form>
+
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-            <div class="alert alert-{{ category }} mt-2">
-                {{ message }}
-            </div>
+                <div class="alert alert-{{ category }} mt-2">{{ message }}</div>
             {% endfor %}
         {% endif %}
     {% endwith %}

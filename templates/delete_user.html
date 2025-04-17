@@ -6,9 +6,13 @@
 <body>
     <h1>Delete User</h1>
     <form action="{{ url_for('delete_user') }}" method="post">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br>
-        <input type="submit" value="Delete">
+        <label for="Username">Username:</label><br>
+        <input type="text" id="Username" name="Username" required><br>
+        <input type="submit" class="btn btn-danger" value="Delete">
     </form>
+
+    <hr>
+    <a href="{{ url_for('home') }}" class="btn btn-outline-primary mt-3">← Back to Home</a>
+
 </body>
 </html>

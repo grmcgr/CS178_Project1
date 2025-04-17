@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Genre</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Top 25 Most Popular Movies by Genre</h1>
+
+        <form method="POST">
+            <label for="genre">Choose a genre:</label>
+            <select name="genre" id="genre">
+                {% for genre in genres %}
+                    <option value="{{ genre.genre_id }}"
+                        {% if selected_genre == genre.genre_id %}selected{% endif %}>
+                        {{ genre.genre_name }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Show Movies</button>
+        </form>
+        <hr>
+
+        {% if movies %}
+        <table class="table table-bordered table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Budget</th>
+                    <th>Revenue</th>
+                    <th>Popularity</th>
+                    <th>Overview</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in movies %}
+                <tr>
+                    <td>{{ movie.title }}</td>
+                    <td>{{ movie.genre_name }}</td>
+                    <td>{{ movie.budget }}</td>
+                    <td>{{ movie.revenue }}</td>
+                    <td>{{ movie.popularity }}</td>
+                    <td>{{ movie.overview }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</body>
+</html>
