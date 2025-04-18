@@ -8,11 +8,11 @@ Due 4/17/2025
 This project replaces an in-class exam and reinforces the skills we've covered in the first part of the course. You will build a self-contained web application using Flask that connects to both a relational (SQL via AWS RDS) and a non-relational (NoSQL via AWS DynamoDB) database.
 
 ### Your project must:
- [x] Be built and run locally using Visual Studio Code  
- [x] Be deployed via Flask as a web application  
- [x] Use both an RDS (MySQL) and DynamoDB database with a consistent theme  
- [x] Be version-controlled using GitHub  
- [x] Be accessible entirely through a browser interface (no terminal interaction)  
+- [x] Be built and run locally using Visual Studio Code  
+- [x] Be deployed via Flask as a web application  
+- [x] Use both an RDS (MySQL) and DynamoDB database with a consistent theme  
+- [x] Be version-controlled using GitHub  
+- [x] Be accessible entirely through a browser interface (no terminal interaction)  
 
 ---
 
