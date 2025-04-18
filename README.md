@@ -1,6 +1,5 @@
-# CS 178 Project 1
-#### Grace McGrane
-### Due 4/17/2025
+Grace McGrane
+Due 4/17/2025
 
 # CS178 Project 1: Full-Stack Web Application
 
@@ -9,11 +8,11 @@
 This project replaces an in-class exam and reinforces the skills we've covered in the first part of the course. You will build a self-contained web application using Flask that connects to both a relational (SQL via AWS RDS) and a non-relational (NoSQL via AWS DynamoDB) database.
 
 ### Your project must:
-- ✅ Be built and run locally using Visual Studio Code  
-- ✅ Be deployed via Flask as a web application  
-- ✅ Use both an RDS (MySQL) and DynamoDB database with a consistent theme  
-- ✅ Be version-controlled using GitHub  
-- ✅ Be accessible entirely through a browser interface (no terminal interaction)  
+ ✅ Be built and run locally using Visual Studio Code  
+ ✅ Be deployed via Flask as a web application  
+ ✅ Use both an RDS (MySQL) and DynamoDB database with a consistent theme  
+ ✅ Be version-controlled using GitHub  
+ ✅ Be accessible entirely through a browser interface (no terminal interaction)  
 
 ---
 
@@ -24,7 +23,7 @@ This project replaces an in-class exam and reinforces the skills we've covered i
 
 ### ✅ Project Report  
 - Screenshots of your working project  
-    - `Project 1 Demo.mp4`  
+    - [Project 1 Video Demo](https://1drv.ms/v/c/331a865ca5d07667/Ed-lupMSuKNPpHixjW54UmsBUUF9ENb93u8Hd6WMgJ1_fA?e=o31eEZ)
 - Description of how SQL and DynamoDB are integrated  
 - Any challenges you encountered  
 
