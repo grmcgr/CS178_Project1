@@ -29,7 +29,7 @@ Please see the video attached for a full demo of the capabilities of this site.
 #### Description of how SQL and DynamoDB are integrated  
 As a user of the site, you need to have a username and date of birth in the system to access the movie data. To begin, you enter in your username and date of birth, DynamoDB looks it up in the system, and if you're there, you can see the next page of movies! If you are not in the system, it will take you to the Add User page so you can add yourself. Then you go back home and log in. The other aspects of CRUD are available in the Users database as you can see in the Demo video and are used as needed. 
 SQL is used with the movies database. You can look at all the genres that are available right on the movies page. Looking at the other two queries, you can either look at all the movies in the database in order of popularity or you can be taken to a new page where you can pick a genre to search by. There is a drop down of genres you can pick through and return a list of the top 25 most popular movies by the genre you picked. There is a part of SQL that include multiple joins. I wanted to have a table that included the movie title and the genre so I had to join threr tables together. The SQL code is below.
-''' SQL
+``` SQL 
 SELECT m.title, g.genre_name, 
         CONCAT('$', FORMAT(m.budget, 0)) AS budget, 
         CONCAT('$', FORMAT(m.revenue, 0)) AS revenue, 
@@ -39,7 +39,7 @@ SELECT m.title, g.genre_name,
     JOIN genre g ON mg.genre_id = g.genre_id
     WHERE g.genre_id = %s ORDER BY m.popularity DESC
     LIMIT 25;
-'''
+```
 
 #### Any challenges you encountered  
 1. I wanted to build my own RDS and my own SQL schema and I worked for the two weeks on it. I unfortunately had to give up today since it was due and just accept the fact I had to lose those 5 points. 
