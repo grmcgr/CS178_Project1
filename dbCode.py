@@ -52,6 +52,7 @@ import boto3
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 table = dynamodb.Table('Users')  
 
+# show me all the uesrs in our system with access
 def get_all_users():
     response = table.scan()
     items = response.get('Items', [])
@@ -65,14 +66,17 @@ def get_all_users():
     
     return users_list
 
+# prove to me that the user you just entered exists
 def get_user(username):
     response = table.get_item(Key={'Username': username})
     return response.get('Item')
 
+# check does your username exist already?
 def user_exists(username):
     response = table.get_item(Key={'Username': username})
     return 'Item' in response
 
+# add in the user to the system so they can get access
 def add_user_to_dynamo(username, dob):
     table.put_item(
         Item={
@@ -81,9 +85,11 @@ def add_user_to_dynamo(username, dob):
         }
     )
 
+# delete the user with the username you added
 def delete_user_from_dynamo(username):
     table.delete_item(Key={'Username': username})
 
+# using the username you entered you can change DOB
 def update_user_dob(username, dob):
     table.update_item(
         Key={'Username': username},
@@ -91,12 +97,14 @@ def update_user_dob(username, dob):
         ExpressionAttributeValues={':d': dob}
     )
 
+# show me all the genres i can pick from
 def get_all_genres():
     query = "SELECT genre_id, genre_name" \
             " FROM genre " \
             " ORDER BY genre_name;"
     return execute_query(query)
 
+# show me the top 25 movies by the genre picked by the user
 def get_top_movies_by_genre(genre_id):
     query = """
     SELECT 

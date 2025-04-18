@@ -9,28 +9,31 @@ import dbCode
 app = Flask(__name__)
 app.secret_key = 'grace-mcgrane'
 
+# site that is the default
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
         username = request.form['Username']
         dob = request.form['DOB']
-
+        # does your username and DOB match our database? 
+        # now you can look at the movies database
         if dbCode.user_exists(username):
             user = dbCode.get_user(username)
             if user.get('DOB') == dob:
                 session['user'] = username
                 flash(f'Welcome back, {username}!', 'success')
                 return redirect(url_for('movies'))  # GO TO MOVIE PAGE
-
+            # if your entry doesn't match, try again
             else:
                 flash('DOB does not match our records.', 'danger')
                 return redirect(url_for('home'))
-
+        # if you're not in it, then add yourself
         else:
             flash('User not found. Please create an account.', 'warning')
             return redirect(url_for('add_user'))     
     return render_template('home.html') 
 
+# add user to gain access
 @app.route('/add-user', methods=['GET', 'POST'])
 def add_user():
     if request.method == 'POST':
@@ -53,6 +56,7 @@ def add_user():
         # Render the form page if the request method is GET
         return render_template('add_user.html')
 
+# delete a username
 @app.route('/delete-user', methods=['GET', 'POST'])
 def delete_user():
     if request.method == 'POST':
@@ -71,6 +75,7 @@ def delete_user():
         # Render the form page if the request method is GET
         return render_template('delete_user.html')
 
+# enter in a username and then update the DOB
 @app.route('/update-user', methods=['GET', 'POST'])
 def update_user():
     if request.method == 'POST':
@@ -87,7 +92,7 @@ def update_user():
     else:
         return render_template('update_user.html')
 
-
+# show me all the users in the list
 @app.route('/display-users')
 def display_users():
     # hard code a value to the users_list;
@@ -95,7 +100,7 @@ def display_users():
     # note that this could have been a result from an SQL query :) 
     return render_template('display_users.html', users=users_list)
 
-
+# show me genres of movies 
 @app.route('/movies')
 def movies():
     data = dbCode.get_movie_genres()
@@ -103,12 +108,15 @@ def movies():
 
 # make special queries and list them 
 # make an html for each of them
+
+# show me all movies ranked by popularity
 @app.route('/movies/all-movies')
 def show_all_movies():
     data = dbCode.show_me_movies()
     return render_template('all_movies.html', results=data)
 
-# Fetch all genres for the dropdown
+# Fetch all genres for the dropdown list
+# data returns in a table after you pick and submit
 @app.route('/movies/select-genre', methods=['GET', 'POST'])
 def select_genre():
     genres = dbCode.get_all_genres()
@@ -131,4 +139,3 @@ def select_genre():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
 
-#page 181 for db testing file - for dbCode?
